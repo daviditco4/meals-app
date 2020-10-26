@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'category_meals_page.dart';
-
 class CategoryItem extends StatelessWidget {
-  const CategoryItem(this.title, this.color);
+  const CategoryItem({
+    @required this.id,
+    @required this.title,
+    @required this.color,
+  });
 
+  final String id;
   final String title;
   final Color color;
 
   void pushCategoryMealsPage(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => CategoryMealsPage()),
+    Navigator.of(context).pushNamed(
+      '/category-meals',
+      arguments: {'id': id, 'title': title},
     );
   }
 
