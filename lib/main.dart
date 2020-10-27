@@ -15,15 +15,15 @@ class MyApp extends StatelessWidget {
         primaryColorBrightness: Brightness.light,
         fontFamily: 'Raleway',
         textTheme: const TextTheme(
-          headline6: const TextStyle(
+          headline6: TextStyle(
             fontFamily: 'Roboto Condensed',
             fontSize: 20.0,
           ),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CategoriesPage(),
       routes: {
+        '/': (_) => CategoriesPage(),
         '/category-meals': (_) => CategoryMealsPage(),
       },
     );
