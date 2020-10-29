@@ -18,6 +18,32 @@ class CategoryMealItem extends StatelessWidget {
   final Difficulty mealDifficulty;
   final Expensiveness mealExpensiveness;
 
+  String get mealDifficultyText {
+    switch (mealDifficulty) {
+      case Difficulty.easy:
+        return 'Easy';
+      case Difficulty.moderate:
+        return 'Moderate';
+      case Difficulty.hard:
+        return 'Hard';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  String get mealExpensivenessText {
+    switch (mealExpensiveness) {
+      case Expensiveness.cheap:
+        return 'Cheap';
+      case Expensiveness.considerable:
+        return 'Considerable';
+      case Expensiveness.expensive:
+        return 'Expensive';
+      default:
+        return 'Unknown';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     const borderRadiusAmount = 16.0;
@@ -74,9 +100,15 @@ class CategoryMealItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(child: MealInfo(mealDurationInMins)),
-                  Expanded(child: MealInfo(mealDifficulty)),
-                  Expanded(child: MealInfo(mealExpensiveness)),
+                  Expanded(
+                    child: MealInfo(Icons.schedule, '$mealDurationInMins min'),
+                  ),
+                  Expanded(
+                    child: MealInfo(Icons.work_outline, mealDifficultyText),
+                  ),
+                  Expanded(
+                    child: MealInfo(Icons.attach_money, mealExpensivenessText),
+                  ),
                 ],
               ),
             ),
