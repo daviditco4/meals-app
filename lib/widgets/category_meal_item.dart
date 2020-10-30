@@ -5,6 +5,7 @@ import 'meal_info.dart';
 
 class CategoryMealItem extends StatelessWidget {
   const CategoryMealItem({
+    @required this.mealId,
     @required this.mealName,
     @required this.mealImageUrl,
     @required this.mealDurationInMins,
@@ -12,6 +13,7 @@ class CategoryMealItem extends StatelessWidget {
     @required this.mealExpensiveness,
   });
 
+  final String mealId;
   final String mealName;
   final String mealImageUrl;
   final int mealDurationInMins;
@@ -44,6 +46,10 @@ class CategoryMealItem extends StatelessWidget {
     }
   }
 
+  void pushMealDetailsPage(BuildContext context) {
+    Navigator.of(context).pushNamed('/meal-details', arguments: mealId);
+  }
+
   @override
   Widget build(BuildContext context) {
     const borderRadiusAmount = 16.0;
@@ -55,7 +61,7 @@ class CategoryMealItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadiusAmount),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () => pushMealDetailsPage(context),
         child: Column(
           children: [
             Stack(
