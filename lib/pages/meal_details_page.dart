@@ -43,7 +43,7 @@ class MealDetailsPage extends StatelessWidget {
                     leading: CircleAvatar(child: Text('#${index + 1}')),
                     title: Text(selectedMeal.recipe.steps[index]),
                   ),
-                  const Divider(),
+                  const Divider(height: 1.0),
                 ],
               );
             },
