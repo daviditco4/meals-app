@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/main_drawer.dart';
 import 'categories_page.dart';
 import 'favorites_page.dart';
 
@@ -21,6 +22,7 @@ class _TabsPageState extends State<TabsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_pages[_currentIndex]['title'])),
+      drawer: MainDrawer(),
       body: _pages[_currentIndex]['body'],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
