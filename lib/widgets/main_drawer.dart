@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget buildDrawerItem(IconData icon, String label) {
+  void navigateTo(BuildContext context, String routeName) {
+    Navigator.of(context).pushReplacementNamed(routeName);
+  }
+
+  Widget buildDrawerItem(IconData icon, String label, Function onTap) {
     return ListTile(
       leading: Icon(icon, size: 28.0),
       title: Text(
@@ -12,6 +16,7 @@ class MainDrawer extends StatelessWidget {
           fontSize: 24.0,
         ),
       ),
+      onTap: onTap,
     );
   }
 
@@ -35,8 +40,16 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20.0),
-          buildDrawerItem(Icons.restaurant, 'Meals & Recipes'),
-          buildDrawerItem(Icons.settings, 'Filters'),
+          buildDrawerItem(
+            Icons.restaurant,
+            'Meals & Recipes',
+            () => navigateTo(context, '/'),
+          ),
+          buildDrawerItem(
+            Icons.settings,
+            'Filters',
+            () => navigateTo(context, '/settings'),
+          ),
         ],
       ),
     );
