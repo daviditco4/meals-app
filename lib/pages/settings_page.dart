@@ -1,22 +1,54 @@
 import 'package:flutter/material.dart';
 
+import '../models/filtering.dart';
 import '../widgets/main_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage(this.currentFiltering, this.setAvailableMeals);
+
+  final Filtering currentFiltering;
+  final Function setAvailableMeals;
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  var _glutenFree = false;
-  var _lactoseFree = false;
-  var _vegan = false;
-  var _vegetarian = false;
+  bool _glutenFree;
+  bool _lactoseFree;
+  bool _vegan;
+  bool _vegetarian;
+
+  @override
+  void initState() {
+    super.initState();
+    _glutenFree = widget.currentFiltering.glutenFree;
+    _lactoseFree = widget.currentFiltering.lactoseFree;
+    _vegan = widget.currentFiltering.vegan;
+    _vegetarian = widget.currentFiltering.vegetarian;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(
+        title: const Text('Settings'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: () {
+              widget.setAvailableMeals(
+                Filtering(
+                  glutenFree: _glutenFree,
+                  lactoseFree: _lactoseFree,
+                  vegan: _vegan,
+                  vegetarian: _vegetarian,
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       drawer: MainDrawer(),
       body: Column(
         children: [
