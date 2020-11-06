@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import '../models/recipe.dart';
 import 'meal_info.dart';
 
-class CategoryMealItem extends StatelessWidget {
-  const CategoryMealItem({
-    @required this.mealId,
-    @required this.mealName,
-    @required this.mealImageUrl,
-    @required this.mealDurationInMins,
-    @required this.mealDifficulty,
-    @required this.mealExpensiveness,
+class MealItem extends StatelessWidget {
+  const MealItem({
+    @required this.id,
+    @required this.name,
+    @required this.imageUrl,
+    @required this.durationInMins,
+    @required this.difficulty,
+    @required this.expensiveness,
   });
 
-  final String mealId;
-  final String mealName;
-  final String mealImageUrl;
-  final int mealDurationInMins;
-  final Difficulty mealDifficulty;
-  final Expensiveness mealExpensiveness;
+  final String id;
+  final String name;
+  final String imageUrl;
+  final int durationInMins;
+  final Difficulty difficulty;
+  final Expensiveness expensiveness;
 
-  String get mealDifficultyText {
-    switch (mealDifficulty) {
+  String get difficultyText {
+    switch (difficulty) {
       case Difficulty.easy:
         return 'Easy';
       case Difficulty.moderate:
@@ -33,8 +33,8 @@ class CategoryMealItem extends StatelessWidget {
     }
   }
 
-  String get mealExpensivenessText {
-    switch (mealExpensiveness) {
+  String get expensivenessText {
+    switch (expensiveness) {
       case Expensiveness.cheap:
         return 'Cheap';
       case Expensiveness.considerable:
@@ -46,8 +46,8 @@ class CategoryMealItem extends StatelessWidget {
     }
   }
 
-  void pushMealDetailsPage(BuildContext context) {
-    Navigator.of(context).pushNamed('/meal-details', arguments: mealId);
+  void pushDetailsPage(BuildContext context) {
+    Navigator.of(context).pushNamed('/meal-details', arguments: id);
   }
 
   @override
@@ -61,7 +61,7 @@ class CategoryMealItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadiusAmount),
       ),
       child: InkWell(
-        onTap: () => pushMealDetailsPage(context),
+        onTap: () => pushDetailsPage(context),
         child: Column(
           children: [
             Stack(
@@ -71,7 +71,7 @@ class CategoryMealItem extends StatelessWidget {
                     top: Radius.circular(borderRadiusAmount),
                   ),
                   child: Image.network(
-                    mealImageUrl,
+                    imageUrl,
                     width: double.infinity,
                     height: 250.0,
                     fit: BoxFit.cover,
@@ -88,7 +88,7 @@ class CategoryMealItem extends StatelessWidget {
                       vertical: 5.0,
                     ),
                     child: Text(
-                      mealName,
+                      name,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24.0,
@@ -107,13 +107,11 @@ class CategoryMealItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    child: MealInfo(Icons.schedule, '$mealDurationInMins min'),
+                    child: MealInfo(Icons.schedule, '$durationInMins min'),
                   ),
+                  Expanded(child: MealInfo(Icons.work_outline, difficultyText)),
                   Expanded(
-                    child: MealInfo(Icons.work_outline, mealDifficultyText),
-                  ),
-                  Expanded(
-                    child: MealInfo(Icons.attach_money, mealExpensivenessText),
+                    child: MealInfo(Icons.attach_money, expensivenessText),
                   ),
                 ],
               ),

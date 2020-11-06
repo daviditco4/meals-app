@@ -4,13 +4,28 @@ import '../dummy_data.dart';
 import '../widgets/titled_list.dart';
 
 class MealDetailsPage extends StatelessWidget {
+  const MealDetailsPage(this.toggleFavorite, this.isFavorite);
+
+  final Function toggleFavorite;
+  final Function isFavorite;
+
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments as String;
     final selectedMeal = dummyMeals.singleWhere((meal) => meal.id == mealId);
 
     return Scaffold(
-      appBar: AppBar(title: Text(selectedMeal.name)),
+      appBar: AppBar(
+        title: Text(selectedMeal.name),
+        actions: [
+          IconButton(
+            icon: Icon(
+              isFavorite(mealId) ? Icons.favorite : Icons.favorite_border,
+            ),
+            onPressed: () => toggleFavorite(mealId),
+          ),
+        ],
+      ),
       body: ListView(
         children: [
           Image.network(
