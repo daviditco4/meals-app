@@ -53,7 +53,7 @@ GitHub repository home page), then begin the installation by opening the file.
 3. Tap the "Settings" item.
 4. Select your filters to hide certain food groups.
 5. Tap the "save" icon at the upper-right corner of the screen.
-6. Open the drawer again. In the list of expenses, tap the button with a trash can icon of an entry to delete it.
+6. Open the drawer again.
 7. Tap the "Meals & Recipes" item.
 8. Choose a food category you like and open it.
 9. Select a meal you want to cook.
